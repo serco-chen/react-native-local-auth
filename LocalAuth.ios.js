@@ -50,6 +50,20 @@ let LocalAuth = {
         }
       )
     })
+  },
+
+  authenticateWithTouchID(opts) {
+    return new Promise(function(resolve, reject) {
+      NativeLocalAuth.authenticateWithTouchID(
+        opts.reason || '',
+        !!opts.fallbackToPasscode,
+        !!opts.suppressEnterPassword,
+        function (error) {
+          if (error) reject(createError(error.message))
+          else resolve()
+        }
+      )
+    })
   }
 }
 
